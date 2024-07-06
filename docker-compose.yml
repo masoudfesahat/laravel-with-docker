@@ -3,6 +3,11 @@ version: "3.8"
 networks:
     laravel:
         driver: bridge
+volumes:
+    laraveldatabase:
+        driver: local
+    laravelredis:
+        driver: local
 
 services:
     nginx:
@@ -32,8 +37,8 @@ services:
         ports:
             - "${FORWARD_MYSQL_PORT:-3306}:3306"
         volumes:
-            - ./docker-repo/mysql/mysql:/var/lib/mysql:delegated
-            - ./docker-repo/mysql/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+            - laraveldatabase:/var/lib/mysql:delegated
+            - ./docker-repo/database/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
         environment:
             MYSQL_DATABASE: "${DB_DATABASE:-default_db}"
             MYSQL_USER: "${DB_USERNAME:-default_user}"
@@ -97,6 +102,8 @@ services:
             test: ["CMD", "redis-cli", "ping"]
             retries: 3
             timeout: 5s
+        volumes:
+            - "laravelredis:/data"
         networks:
             - laravel
 

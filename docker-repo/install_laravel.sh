@@ -6,7 +6,6 @@ docker compose run --rm composer create-project laravel/laravel src
 
 # Move all files including hidden ones
 cd src && tar cf - . | (cd .. && tar xf -)
-rm -rf src
 
 # Update the .env file with MySQL and Redis configuration
 sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=mysql/' .env

@@ -4,5 +4,5 @@ To have an intital database data for mysql container, you must put sample.sql fi
 
 ```
 volumes:
- ./mysql/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
+ ./database/docker-entrypoint-initdb.d/:/docker-entrypoint-initdb.d
 ```

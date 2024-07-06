@@ -54,6 +54,8 @@ horizon: ## run horizon
 install-laravel: ## Download source Laravel and update .env file
 	chmod +x ./docker-repo/install_laravel.sh
 	./docker-repo/install_laravel.sh
+	chown -R $(USER):$(GROUP) .
+	rm -rf src
 
 pint: ## format codes with pint
 	docker compose run php ./vendor/bin/pint
