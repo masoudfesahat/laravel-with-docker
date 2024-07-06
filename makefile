@@ -61,8 +61,6 @@ install-laravel: ## Download source Laravel and update .env file
 		rm -rf src;\
 	fi
 
-
-
 pint: ## format codes with pint
 	docker compose run php ./vendor/bin/pint
 
