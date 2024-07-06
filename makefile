@@ -52,10 +52,16 @@ horizon: ## run horizon
 	docker compose run --rm artisan horizon
 
 install-laravel: ## Download source Laravel and update .env file
-	chmod +x ./docker-repo/install_laravel.sh
-	./docker-repo/install_laravel.sh
-	chown -R $(USER):$(GROUP) .
-	rm -rf src
+	@if [ -d "./app" ]; then \
+		echo "project already exists."; \
+	else \
+		chmod +x ./docker-repo/install_laravel.sh;\
+		./docker-repo/install_laravel.sh;\
+		chown -R $(USER):$(GROUP) .;\
+		rm -rf src;\
+	fi
+
+
 
 pint: ## format codes with pint
 	docker compose run php ./vendor/bin/pint
