@@ -49,6 +49,27 @@ For testing the project, you can easily use this command:
 ```bash
 make test ...
 ```
+other command: 
+
+```bash
+build             run docker compose build
+ps                docker compose ps
+up                docker compose up
+down              docker compose down
+down-volumes      docker compose down with volumes
+restart           docker compose restart
+composer-install  composer install
+composer          run composer commands
+tinker            artisan tinker
+art               run artisan command
+npm               run npm command
+migration         make a new migration
+migrate           run artisan migrate
+horizon           run horizon
+install-laravel   Download source Laravel and update .env file
+pint              format codes with pint
+test              run tests
+```
 
 ## License
 
