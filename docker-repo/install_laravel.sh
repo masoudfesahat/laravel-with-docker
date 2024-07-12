@@ -18,3 +18,7 @@ sed -i 's/^# DB_PASSWORD=.*/DB_PASSWORD=secret/' .env
 # Update REDIS_HOST
 sed -i 's/^REDIS_HOST=127.0.0.1/REDIS_HOST=redis/' .env
 sed -i 's/^# REDIS_HOST/REDIS_HOST/' .env
+
+# Update Cache 
+sed -i 's/CACHE_STORE=database/CACHE_STORE=file/' .env 
+sed -i 's/LOG_CHANNEL=stack/LOG_CHANNEL=daily/' .env 
