@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+echo "Check php code style and issues..."
+echo "Running Php cs-fixer"
+#./vendor/bin/pint --dirty
+make pint
+git add .
+echo "Done!"

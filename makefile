@@ -24,7 +24,7 @@ composer-install: ## composer install
 	docker compose run --rm composer install
 
 composer: ## run composer commands
-	docker compose run --rm composer $(filter-out $@,$(MAKECMDGOALS))
+	docker compose run --rm -it composer $(filter-out $@,$(MAKECMDGOALS))
 %:
 
 tinker: ## artisan tinker
@@ -33,17 +33,17 @@ tinker: ## artisan tinker
 art: ## run artisan command
 	docker compose run --rm artisan $(filter-out $@,$(MAKECMDGOALS))
 %:
-	@:	
+	@:
 
 npm: ## run npm command
 	docker compose run --rm npm $(filter-out $@,$(MAKECMDGOALS))
 %:
-	@:	
+	@:
 
 migration: ## make a new migration
 	docker compose run --rm artisan make:migration $(filter-out $@,$(MAKECMDGOALS))
 %:
-	@:	
+	@:
 
 migrate: ## run artisan migrate
 	docker compose run --rm artisan migrate
@@ -61,8 +61,14 @@ install-laravel: ## Download source Laravel and update .env file
 		rm -rf src;\
 	fi
 
+pint-to-git: ## Download source Laravel and update .env file
+	@if [ -d "./.git" ]; then \
+		chmod +x ./docker-repo/scripts/setup.sh;\
+		./docker-repo/scripts/setup.sh;\
+	fi
+
 pint: ## format codes with pint
-	docker compose run php ./vendor/bin/pint
+	docker compose run -T --rm php ./vendor/bin/pint
 
 test: ## run tests
 	docker compose run --rm artisan test
