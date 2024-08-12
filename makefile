@@ -67,9 +67,12 @@ pint-to-git: ## Download source Laravel and update .env file
 		./docker-repo/scripts/setup.sh;\
 	fi
 
-pint: ## format codes with pint
-	docker compose run -T --rm php ./vendor/bin/pint
+format: ## format codes with pint
+	docker compose run -T --rm php ./vendor/bin/pint --dirty
 
+format-all: ## format codes with pint
+	docker compose run -T --rm php ./vendor/bin/pint 
+	
 test: ## run tests
 	docker compose run --rm artisan test
 
