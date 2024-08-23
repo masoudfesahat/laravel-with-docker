@@ -86,3 +86,9 @@ help:
     		-e 's/:.*##\s*/:/' \
     		-e 's/^\(.\+\):\(.*\)/$(shell tput setaf 6)\1$(shell tput sgr0):\2/' \
     		$(MAKEFILE_LIST) | column -c2 -t -s :
+
+# Catch-all for undefined commands
+%:
+	@echo "Error: Unknown command '$(MAKECMDGOALS)'"
+	@echo "Showing help:"
+	@$(MAKE) help
